@@ -1,12 +1,13 @@
 package main
 
-import (
-	"fmt"
-
-	"github.com/bagger3025/golang/something"
-)
+import "fmt"
 
 func main() {
-	something.SayHello()
-	fmt.Println("HELLO!")
+	const name = "nico"
+	var myName = "hello"
+	myName2 := "hello2"
+
+	fmt.Println(name)
+	fmt.Println(myName)
+	fmt.Println(myName2)
 }
