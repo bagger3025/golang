@@ -3,13 +3,11 @@ package main
 import "fmt"
 
 func main() {
-	numbers := [5]int{2, 3, 4, 5, 6}
+	nico := map[string]string{"name": "nico", "age": "18"}
 
-	numbers2 := []int{2, 3}
+	fmt.Println(nico)
 
-	numbers2 = append(numbers2, 4)
-
-	fmt.Println(numbers)
-
-	fmt.Println(numbers2)
+	for key, val := range nico {
+		fmt.Println(key, val)
+	}
 }
