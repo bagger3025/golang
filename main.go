@@ -3,13 +3,13 @@ package main
 import "fmt"
 
 func main() {
-	a := 2
-	b := &a
-	a = 5
+	numbers := [5]int{2, 3, 4, 5, 6}
 
-	fmt.Println(a, *b)
+	numbers2 := []int{2, 3}
 
-	*b = 10
+	numbers2 = append(numbers2, 4)
 
-	fmt.Println(a, *b)
+	fmt.Println(numbers)
+
+	fmt.Println(numbers2)
 }
