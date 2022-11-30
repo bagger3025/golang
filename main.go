@@ -2,37 +2,26 @@ package main
 
 import "fmt"
 
-func multiply(a int, b int) int {
-	return a * b
+func superAdd2(numbers ...int) int {
+	total := 0
+	for i := 0; i < len(numbers); i++ {
+		total += numbers[i]
+	}
+	return total
 }
 
-func multiply2(a, b int) int {
-	return a * b
-}
+func superAdd(numbers ...int) int {
+	total := 0
+	for _, number := range numbers {
+		total += number
+	}
 
-func addAndMultiply(a, b int) (added int, multiplied int) {
-	defer fmt.Println(added, multiplied, "are returned")
-	added = a + b
-	multiplied = a * b
-	defer fmt.Println(added, multiplied, "are returned")
-	return
-}
-
-func repeatme(names ...string) {
-	fmt.Println(names)
+	return total
 }
 
 func main() {
-	const name = "nico"
-	var myName = "hello"
-	myName2 := "hello2"
-
-	fmt.Println(name)
-	fmt.Println(myName)
-	fmt.Println(myName2)
-
-	added, multiplied := addAndMultiply(3, 5)
-	fmt.Println(added, multiplied)
-
-	repeatme("a", "b", "c", "d", "e")
+	result := superAdd(2, 3, 4, 5, 6, 7)
+	fmt.Println(result)
+	result = superAdd2(2, 3, 4, 5, 6, 7)
+	fmt.Println(result)
 }
