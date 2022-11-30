@@ -1,7 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/bagger3025/golang/something"
+)
 
 func main() {
-	fmt.Println("Hello, World!")
+	something.SayHello()
+	fmt.Println("HELLO!")
 }
