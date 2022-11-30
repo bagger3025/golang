@@ -10,8 +10,12 @@ func multiply2(a, b int) int {
 	return a * b
 }
 
-func addAndMultiply(a, b int) (int, int) {
-	return a + b, a * b
+func addAndMultiply(a, b int) (added int, multiplied int) {
+	defer fmt.Println(added, multiplied, "are returned")
+	added = a + b
+	multiplied = a * b
+	defer fmt.Println(added, multiplied, "are returned")
+	return
 }
 
 func repeatme(names ...string) {
