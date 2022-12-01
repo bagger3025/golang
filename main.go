@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 
 	"github.com/bagger3025/golang/accounts"
 )
@@ -13,7 +12,12 @@ func main() {
 	fmt.Println(account.Balance())
 	err := account.Withdraw(20)
 	if err != nil {
-		log.Fatalln(err)
+		fmt.Println(err)
 	}
 	fmt.Println("err was", err, "balance is", account.Balance())
+
+	account.ChangeOwner("bightguy")
+	fmt.Println(account.Owner())
+
+	fmt.Println(account)
 }
