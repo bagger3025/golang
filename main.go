@@ -3,21 +3,15 @@ package main
 import (
 	"fmt"
 
-	"github.com/bagger3025/golang/accounts"
+	mydicts "github.com/bagger3025/golang/mydict"
 )
 
 func main() {
-	account := accounts.NewAccount("nico")
-	account.Deposit(10)
-	fmt.Println(account.Balance())
-	err := account.Withdraw(20)
+	dictionaries := mydicts.Dictionary{"first": "First word"}
+	val, err := dictionaries.Search("second")
 	if err != nil {
 		fmt.Println(err)
+	} else {
+		fmt.Println(val)
 	}
-	fmt.Println("err was", err, "balance is", account.Balance())
-
-	account.ChangeOwner("bightguy")
-	fmt.Println(account.Owner())
-
-	fmt.Println(account)
 }
