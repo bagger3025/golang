@@ -1,7 +1,7 @@
 package main
 
-import "github.com/bagger3025/golang/urlChecker"
+import "github.com/bagger3025/golang/jobScraper"
 
 func main() {
-	urlChecker.UrlCheckerMain()
+	jobScraper.JobScraperMain()
 }
