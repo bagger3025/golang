@@ -1,14 +1,14 @@
 package urlChecker
 
 import (
-	"errors"
 	"fmt"
 	"net/http"
 )
 
-var (
-	errRequestFailed = errors.New("request failed")
-)
+type result struct {
+	url    string
+	status string
+}
 
 func UrlCheckerMain() {
 	urls := []string{
@@ -24,32 +24,30 @@ func UrlCheckerMain() {
 	}
 
 	results := make(map[string]string)
+	c := make(chan result)
 
 	for _, url := range urls {
-		result := "OK"
-		err := hitURL(url)
-		if err != nil {
-			result = "FAILED"
-		}
-
-		results[url] = result
+		go hitURL(url, c)
 	}
 
-	// fmt.Println(results)
+	for i := 0; i < len(urls); i++ {
+		hitURLResult := <-c
+		results[hitURLResult.url] = hitURLResult.status
+	}
 
-	for url, result := range results {
-		fmt.Println(url, result)
+	for url, status := range results {
+		fmt.Println(url, status)
 	}
 }
 
-func hitURL(url string) error {
-	fmt.Println("Checking:", url)
+func hitURL(url string, c chan<- result) {
 	resp, err := http.Get(url)
+	status := "OK"
 	if err != nil || resp.StatusCode >= 400 {
-		fmt.Println(err)
-		fmt.Println(resp.StatusCode)
-		return errRequestFailed
+		status = "FAILED"
 	}
-
-	return nil
+	c <- result{
+		url:    url,
+		status: status,
+	}
 }
